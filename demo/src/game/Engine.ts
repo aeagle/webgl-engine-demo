@@ -5,10 +5,8 @@ import { RawModel } from './models/RawModel';
 import { Entity } from './Entity';
 import { QuadModel } from './models/QuadModel';
 
-/* eslint import/no-webpack-loader-syntax: off */
-import VERTEX_SHADER_SOURCE from '!raw-loader!./shaders/basic/vertexshader.txt';
-/* eslint import/no-webpack-loader-syntax: off */
-import FRAGMENT_SHADER_SOURCE from '!raw-loader!./shaders/basic/fragmentshader.json';
+import VERTEX_SHADER_SOURCE from './shaders/basic/vertexshader.txt';
+import FRAGMENT_SHADER_SOURCE from './shaders/basic/fragmentshader.txt';
 
 export class Engine {
 	private basicShader: Shader;
@@ -34,7 +32,7 @@ export class Engine {
 	}
 
 	private loadShaders() {
-		 this.basicShader = new Shader("basic", VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+		this.basicShader = new Shader("basic", VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
 	}
 
 	private renderEntities() {
