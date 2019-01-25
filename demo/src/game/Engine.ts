@@ -40,13 +40,14 @@ export class Engine {
 			(model:RawModel) => {
 				const entities = this.entities.get(model);
 				if (entities) {
-					const modelBuffer = RawModel.use(model);
+					RawModel.use(model);
 					entities.forEach(entity => {
-						this.entityRender.render(modelBuffer, entity);
+						this.entityRender.render(entity);
 					});
 				}
 			}
 		)
+		RawModel.dispose();
 	}
 
 	private loop() {
