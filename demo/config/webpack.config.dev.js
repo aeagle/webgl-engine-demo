@@ -133,7 +133,7 @@ module.exports = {
           // smaller than specified limit in bytes as data URLs to avoid requests.
           // A missing `test` is equivalent to a match.
           {
-            test: /\.txt$/,
+            test: [/\.txt$/, /\.obj$/],
             use: 'raw-loader'
           },
           {

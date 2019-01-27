@@ -6,6 +6,7 @@ declare module '*.gif'
 declare module '*.bmp'
 declare module '*.tiff'
 declare module '*.txt'
+declare module '*.obj'
 
 declare module "*.json" {
 	const value: any;
