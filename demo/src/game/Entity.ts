@@ -1,10 +1,6 @@
 import { RawModel } from './graphics/RawModel';
 import { TexturedModel } from './graphics/TexturedModel';
-import { vec3, mat4 } from 'gl-matrix';
-
-export const radians = (degrees:number) => {
-	return degrees * Math.PI / 180;
-};
+import { vec3, mat4, glMatrix } from 'gl-matrix';
 
 export class Entity {
 	public translation: vec3;
@@ -29,12 +25,14 @@ export class Entity {
 
 		mat4.translate(matrix, matrix, this.translation);
 		mat4.scale(matrix, matrix, vec3.fromValues(this.scale, this.scale, this.scale));
-		mat4.rotateX(matrix, matrix, radians(this.rotation[0]));
-		mat4.rotateY(matrix, matrix, radians(this.rotation[1]));
-		mat4.rotateZ(matrix, matrix, radians(this.rotation[2]));
-
-		this.rotation[1] += 3;
+		mat4.rotateX(matrix, matrix, glMatrix.toRadian((this.rotation[0])));
+		mat4.rotateY(matrix, matrix, glMatrix.toRadian(this.rotation[1]));
+		mat4.rotateZ(matrix, matrix, glMatrix.toRadian(this.rotation[2]));
 
 		return matrix;
+	}
+
+	public animate(delta: number) {
+		this.rotation[1] += 10 * delta;
 	}
 }

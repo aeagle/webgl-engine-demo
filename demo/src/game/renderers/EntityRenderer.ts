@@ -1,10 +1,10 @@
 import { gl } from '../GL';
-import { Entity, radians } from '../Entity';
+import { Entity } from '../Entity';
 import { RawModel } from '../graphics/RawModel';
 import { TexturedModel } from '../graphics/TexturedModel';
 import { ModelTypes } from '../graphics/ModelTypes';
 import { Light } from '../graphics/Light';
-import { mat4, vec3 } from 'gl-matrix';
+import { mat4, vec3, glMatrix } from 'gl-matrix';
 import { Camera } from '../graphics/Camera';
 
 interface IRenderContext {
@@ -13,9 +13,9 @@ interface IRenderContext {
 }
 
 export class EntityRenderer {
-	public static readonly FOV:number = 70;
+	public static readonly FOV:number = 60;
 	public static readonly NEAR_PLANE:number = 0.1;
-	public static readonly FAR_PLANE:number = 1000;
+	public static readonly FAR_PLANE:number = 100;
 
 	private static createProjectionMatrix() {
 		const aspectRatio = gl.canvas.width / gl.canvas.height;
@@ -23,21 +23,17 @@ export class EntityRenderer {
 		const projectionMatrix = mat4.create();
 		mat4.perspective(
 			projectionMatrix, 
-			radians(EntityRenderer.FOV), 
+			glMatrix.toRadian(EntityRenderer.FOV), 
 			aspectRatio,
 			EntityRenderer.NEAR_PLANE,
 			EntityRenderer.FAR_PLANE);
 
 		return projectionMatrix;
 	}
-
+ 
 	private static createViewMatrix(camera: Camera) {
 		const viewMatrix = mat4.create();
-		mat4.rotateX(viewMatrix, viewMatrix, radians(camera.pitch));
-		mat4.rotateY(viewMatrix, viewMatrix, radians(camera.yaw));
-		mat4.rotateZ(viewMatrix, viewMatrix, radians(camera.roll));
-		const negativeCameraPos = vec3.fromValues(-camera.position[0], -camera.position[1], -camera.position[2]);
-		mat4.translate(viewMatrix, viewMatrix, negativeCameraPos);
+		mat4.lookAt(viewMatrix, camera.position, vec3.fromValues(0, 0, -1), vec3.fromValues(0, 1, 0));
 		return viewMatrix;
 	}
 
