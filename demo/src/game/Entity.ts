@@ -33,7 +33,9 @@ export class Entity {
 		mat4.rotateY(matrix, matrix, radians(this.rotation[1]));
 		mat4.rotateZ(matrix, matrix, radians(this.rotation[2]));
 
+		this.rotation[0] += 3;
 		this.rotation[1] += 3;
+		this.rotation[2] += 3;
 
 		return matrix;
 	}

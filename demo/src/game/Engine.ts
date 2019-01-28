@@ -13,7 +13,7 @@ import { Camera } from './graphics/Camera';
 export class Engine {
 	private basicShader: BasicShader;
 	private textureShader: TextureShader;
-	private light = new Light(vec3.fromValues(0, 0, 20), vec3.fromValues(0.9, 0.6, 0.2));
+	private light = new Light(vec3.fromValues(0, 20, 20), vec3.fromValues(0.9, 0.6, 0.7));
 	private camera = new Camera(vec3.fromValues(0, 0, 0.5), 0, 0, 0);
 	private entityRenderer: EntityRenderer = new EntityRenderer();
 	private entities: Map<RawModel | TexturedModel, Entity[]> = new Map<RawModel | TexturedModel, Entity[]>();
@@ -74,16 +74,16 @@ export class Engine {
 		const dragonEntity = 
 			new Entity(
 				dragon,
-				vec3.fromValues(0.03, -0.02, -0.5),
+				vec3.fromValues(0.10, 0, -0.5),
 				vec3.fromValues(0, 0, 0),
-				0.002);
+				0.010);
 				
 		const dragonEntity1 = 
 			new Entity(
 				dragon,
-				vec3.fromValues(-0.03, -0.02, -0.5),
-				vec3.fromValues(0, 0, 0),
-				0.002);
+				vec3.fromValues(-0.10, 0, -0.5),
+				vec3.fromValues(45, 45, 0),
+				0.010);
 
 		this.entities.set(dragon, [ dragonEntity, dragonEntity1 ]);
 	}
