@@ -76,16 +76,16 @@ export class Engine {
 		const dragonEntity = 
 			new Entity(
 				dragon,
-				vec3.fromValues(0.03, -0.02, -0.5),
+				vec3.fromValues(0.10, 0, -0.5),
 				vec3.fromValues(0, 0, 0),
-				0.002);
+				0.010);
 				
 		const dragonEntity1 = 
 			new Entity(
 				dragon,
-				vec3.fromValues(-0.03, -0.02, -0.7),
-				vec3.fromValues(0, 0, 0),
-				0.002);
+				vec3.fromValues(-0.10, 0, -0.5),
+				vec3.fromValues(45, 45, 0),
+				0.010);
 
 		this.entities.set(dragon, [ dragonEntity, dragonEntity1 ]);
 	}
