@@ -28,6 +28,8 @@ export class Entity {
 		mat4.rotateX(matrix, matrix, glMatrix.toRadian((this.rotation[0])));
 		mat4.rotateY(matrix, matrix, glMatrix.toRadian(this.rotation[1]));
 		mat4.rotateZ(matrix, matrix, glMatrix.toRadian(this.rotation[2]));
+
+		return matrix;
 	}
 
 	public animate(delta: number) {
